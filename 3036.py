@@ -4,12 +4,16 @@
 class Num:
     def __init__(self, n):
         self.n = int(n)
-        self.f = int(n.replace("-", "")[0])
+        if self.n >= 0:
+            self.s = bin(self.n)
+        else:
+            self.s = bin(2 ** 64 + self.n)
+        self.one = self.s.count('1')
 
     def __lt__(self, other):
-        if self.f > other.s:
+        if self.one > other.one:
             return True
-        elif self.f == other.s:
+        elif self.one == other.one:
             return self.n < other.n
 
 def main():
